@@ -1,4 +1,6 @@
 const electron = require('electron');
+const remote = electron.remote;
+const { createWindow } = remote.require('./main');
 const $ = require('jquery');
 
 const $viewer = $('.viewer')
@@ -54,7 +56,9 @@ const steper = (string) => {
   viewer()
 }
 
-
+$('#new-window').on('click', () => {
+  createWindow();
+});
 
 $('#play-button').on('click', () => {
   PAUSED = false

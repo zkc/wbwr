@@ -1,17 +1,33 @@
 const { app, BrowserWindow } = require('electron');
+const Menubar = require('menubar');
+const windows = new Set()
+const menubar = Menubar({
+  width: 400,
+  height: 500,
+  icon: ''
+})
+const createWindow = exports.createWindow = (file) => {
+  let newWindow = new BrowserWindow();
+  windows.add(newWindow);
 
-let mainWindow = null;
+  newWindow.loadURL(`file://${__dirname}/reader.html`);
 
-app.on('ready', () => {
-  console.log('hey');
-  mainWindow = new BrowserWindow({
-    minWidth: 400,
-    minHeight: 300,
+  newWindow.on('closed', () => {
+    windows.delete(newWindow)
+    newWindow = null
   });
+}
 
-  mainWindow.loadURL(`file://${__dirname}/index.html`);
+menubar.on('ready', () => {
+  console.log('wbwr ready');
+});
 
-  mainWindow.once('ready-to-show', () => {
-    mainWindow.show();
+menubar.on('after-create-window', () => {
+  menubar.window.loadURL(`file://${__dirname}/index.html`);
+  menubar.window.on('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      menubar.window.webContents.send('resized', {bounds: menubar.window.getBounds()});
+    }, 150);
   });
 });
