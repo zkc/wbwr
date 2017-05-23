@@ -6,17 +6,31 @@ const menubar = Menubar({
   height: 500,
   icon: ''
 })
-const createWindow = exports.createWindow = (file) => {
+
+const createWindow = exports.createWindow = (text) => {
   let newWindow = new BrowserWindow();
   windows.add(newWindow);
 
   newWindow.loadURL(`file://${__dirname}/reader.html`);
+
+  newWindow.readerText = text
+
+
+  // newWindow.on('ready', () => {
+  //
+  // })
 
   newWindow.on('closed', () => {
     windows.delete(newWindow)
     newWindow = null
   });
 }
+
+// const sendText = exports.sendText  = (text) => {
+//   console.log(text)
+//
+//
+// }
 
 menubar.on('ready', () => {
   console.log('wbwr ready');

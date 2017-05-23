@@ -1,13 +1,13 @@
 const electron = require('electron');
-const remote = electron.remote;
-const { createWindow } = remote.require('./main');
 const $ = require('jquery');
 
 const $viewer = $('.viewer')
 
-const test = `The sky above. the port. was the color. of television, tuned
-to a dead channel.
-"It's not like I'm using," Case heard someone say, as he shouldered his way through the crowd around the door of the Chat.`
+// const test = `The sky above. the port. was the color. of television, tuned
+// to a dead channel.
+// "It's not like I'm using," Case heard someone say, as he shouldered his way through the crowd around the door of the Chat.`
+
+const textFromMenu = electron.remote.getCurrentWindow().readerText
 
 let SPEED = 100
 let PAUSED = true
@@ -57,9 +57,10 @@ const steper = (string) => {
 }
 
 
+
 $('#play-button').on('click', () => {
   PAUSED = false
-  steper($('textarea').val() || test)
+  steper(textFromMenu)
 })
 
 $('#pause-button').on('click', () => {
