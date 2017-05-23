@@ -15,22 +15,11 @@ const createWindow = exports.createWindow = (text) => {
 
   newWindow.readerText = text
 
-
-  // newWindow.on('ready', () => {
-  //
-  // })
-
   newWindow.on('closed', () => {
     windows.delete(newWindow)
     newWindow = null
   });
 }
-
-// const sendText = exports.sendText  = (text) => {
-//   console.log(text)
-//
-//
-// }
 
 menubar.on('ready', () => {
   console.log('wbwr ready');
