@@ -11,11 +11,14 @@ let SPEED = 100
 let PAUSED = true
 
 const splitter = (string) => {
-  const array = string.split(" ")
+  const stringRegExp = new RegExp(/[\n\s]/)
+  const array = string.split(stringRegExp)
 
   return array.map( word => {
+    const punctuationRegExp = new RegExp(/[.,\/#!$%\^&\*;:{}=\-_`~()]/)
     const result = { word, punctuation: false }
-    if (word.indexOf('.') > 0) {
+
+    if (word.match(punctuationRegExp)) {
       result.punctuation = true
     }
     return result
