@@ -6,11 +6,14 @@ const menubar = Menubar({
   height: 500,
   icon: ''
 })
-const createWindow = exports.createWindow = (file) => {
+
+const createWindow = exports.createWindow = (text) => {
   let newWindow = new BrowserWindow();
   windows.add(newWindow);
 
   newWindow.loadURL(`file://${__dirname}/reader.html`);
+
+  newWindow.readerText = text
 
   newWindow.on('closed', () => {
     windows.delete(newWindow)

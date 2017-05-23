@@ -1,15 +1,11 @@
 const electron = require('electron');
-const remote = electron.remote;
-const { createWindow } = remote.require('./main');
 const $ = require('jquery');
 
 const $viewer = $('.viewer')
 
-const test = `The sky above. the port. was the color. of television, tuned
-to a dead channel.
-"It's not like I'm using," Case heard someone say, as he shouldered his way through the crowd around the door of the Chat.`
+const textFromMenu = electron.remote.getCurrentWindow().readerText
 
-let SPEED = 100
+let SPEED = 150
 let PAUSED = true
 
 const splitter = (string) => {
@@ -27,14 +23,15 @@ const splitter = (string) => {
   })
 }
 
-//Just doing this to get the scope outside of the steper function
+//Just doing this to get the scope outside of the stepper function
 let viewer
 
-const steper = (string) => {
+const stepper = (string) => {
   const array = splitter(string);
   let end = array.length - 1
   let currentWord = 0
   spewing = true
+  $viewer.append(array[0].word)
 
   viewer = () => {
     let wordObject
@@ -48,27 +45,21 @@ const steper = (string) => {
         } else {
           setTimeout(() => {viewer(wordObject.word)}, SPEED)
         }
+      } else {
+        window.close()
       }
       $viewer.empty()
       $viewer.append(wordObject.word)
     }
   }
-  viewer()
 }
 
-
-$('#play-button').on('click', () => {
-  PAUSED = false
-  steper($('textarea').val() || test)
-})
+//setup viewer function stuffs
+stepper(textFromMenu)
 
 $('#pause-button').on('click', () => {
-  if (PAUSED) {
-    PAUSED = !PAUSED
-    viewer()
-  } else {
-    PAUSED = !PAUSED
-  }
+  PAUSED = !PAUSED
+  !PAUSED && viewer()
 })
 
 $('#faster-button').on('click', () => {
