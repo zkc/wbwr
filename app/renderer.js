@@ -7,8 +7,8 @@ const test = `The sky above. the port. was the color. of television, tuned
 to a dead channel.
 "It's not like I'm using," Case heard someone say, as he shouldered his way through the crowd around the door of the Chat.`
 
-const SPEED = 200
-let spewing = false
+let SPEED = 100
+let PAUSED = true
 
 const splitter = (string) => {
   const stringRegExp = new RegExp(/[\n\s]/)
@@ -21,10 +21,12 @@ const splitter = (string) => {
     if (word.match(punctuationRegExp)) {
       result.punctuation = true
     }
-
     return result
   })
 }
+
+//Just doing this to get the scope outside of the steper function
+let viewer
 
 const steper = (string) => {
   const array = splitter(string);
@@ -32,34 +34,46 @@ const steper = (string) => {
   let currentWord = 0
   spewing = true
 
-  const viewer = (word) => {
+  viewer = () => {
+    let wordObject
+    if (!PAUSED) {
+      if(currentWord<end){
+        currentWord++
+        wordObject = array[currentWord]
 
-    // console.log(currentWord, word);
-    if(currentWord<end){
-      currentWord++
-
-      let wordObject = array[currentWord]
-      if (array[currentWord - 1].punctuation) {
-        console.log(wordObject, 'WAIT! IT a period')
-        setTimeout(() => {viewer(wordObject.word)}, SPEED + 100)
-
-      } else {
-
-        setTimeout(() => {viewer(wordObject.word)}, SPEED)
+        if (array[currentWord - 1].punctuation) {
+          setTimeout(() => {viewer(wordObject.word)}, SPEED + 100)
+        } else {
+          setTimeout(() => {viewer(wordObject.word)}, SPEED)
+        }
       }
-
-    } else {
-      //
+      $viewer.empty()
+      $viewer.append(wordObject.word)
     }
-    $viewer.empty()
-    $viewer.append(word)
   }
-  viewer(array[currentWord])
+  viewer()
 }
 
 
-$('button').on('click', () => {
-  // $('textarea').val()
-  steper(  test)
 
+$('#play-button').on('click', () => {
+  PAUSED = false
+  steper($('textarea').val() || test)
+})
+
+$('#pause-button').on('click', () => {
+  if (PAUSED) {
+    PAUSED = !PAUSED
+    viewer()
+  } else {
+    PAUSED = !PAUSED
+  }
+})
+
+$('#faster-button').on('click', () => {
+  SPEED -= 25
+})
+
+$('#slower-button').on('click', () => {
+  SPEED += 25
 })
