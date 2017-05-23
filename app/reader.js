@@ -56,9 +56,6 @@ const steper = (string) => {
   viewer()
 }
 
-$('#new-window').on('click', () => {
-  createWindow();
-});
 
 $('#play-button').on('click', () => {
   PAUSED = false
