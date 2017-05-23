@@ -7,7 +7,7 @@ const test = `The sky above. the port. was the color. of television, tuned
 to a dead channel.
 "It's not like I'm using," Case heard someone say, as he shouldered his way through the crowd around the door of the Chat.`
 
-const SPEED = 200
+let SPEED = 100
 let spewing = false
 
 const splitter = (string) => {
@@ -31,7 +31,6 @@ const steper = (string) => {
   spewing = true
 
   const viewer = (word) => {
-
     // console.log(currentWord, word);
     if(currentWord<end){
       currentWord++
@@ -42,7 +41,6 @@ const steper = (string) => {
         setTimeout(() => {viewer(wordObject.word)}, SPEED + 100)
 
       } else {
-
         setTimeout(() => {viewer(wordObject.word)}, SPEED)
       }
 
@@ -52,12 +50,28 @@ const steper = (string) => {
     $viewer.empty()
     $viewer.append(word)
   }
+
+  // if (notPaused) {}
   viewer(array[currentWord])
 }
 
 
-$('button').on('click', () => {
+$('#play-button').on('click', () => {
   // $('textarea').val()
-  steper(  test)
+  steper($('textarea').val() || test)
+})
 
+$('#pause-button').on('click', () => {
+  console.log('PAUSE IT')
+})
+
+$('#faster-button').on('click', () => {
+  console.log('FASTER')
+  SPEED -= 25
+
+})
+
+$('#slower-button').on('click', () => {
+  console.log('SLOWER')
+  SPEED += 25
 })
