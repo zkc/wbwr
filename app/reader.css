@@ -2,7 +2,7 @@
 #000000
 #c4d6b0
 #9a031e
-#faa916
+#faa916  
 #2e3532
 #FFFFFF
 */
@@ -104,4 +104,43 @@ body {
   width: 100px;
   color: #c4d6b0;
   font-weight: 100;
+}
+
+#faster-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/faster.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
+#slower-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/slower.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
+
+#last-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/last.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
+
+#next-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/next.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
 }
