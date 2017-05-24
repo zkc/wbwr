@@ -34,11 +34,12 @@ const splitter = (string) => {
 
 //Just doing this to get the scope outside of the stepper function
 let viewer
+let currentWord
 
 const stepper = (string) => {
   const array = splitter(string);
   let end = array.length - 1
-  let currentWord = 0
+  currentWord = 0
   spewing = true
   $viewer.append(array[0].word)
   $scrollingCurrent.append(array[0].word)
@@ -80,15 +81,60 @@ const scroller = (array, index) => {
 // setup viewer function stuffs
 stepper(testsring)
 
-$('#pause-button').on('click', () => {
+const playPause = () => {
   PAUSED = !PAUSED
   !PAUSED && viewer()
+}
+
+const faster = () => {
+  SPEED -= 10
+}
+
+const slower = () => {
+  SPEED += 10
+}
+
+const next = () => {
+  PAUSED = true
+  currentWord++
+  viewer()
+}
+
+const back = () => {
+  PAUSED = true
+  currentWord--
+  viewer()
+}
+
+$('html').on('keydown', (e) => {
+  console.log();
+  switch(e.keyCode){
+    case 32:
+      playPause();
+      break;
+    case 40:
+      slower();
+      break;
+    case 38:
+      faster();
+      break;
+    case 37:
+      back()
+      break;
+    case 39:
+      next()
+      break;
+  }
+});
+
+$('#play-pause-button').on('click', () => {
+  playPause()
 })
 
 $('#faster-button').on('click', () => {
-  SPEED -= 25
+  faster()
 })
 
 $('#slower-button').on('click', () => {
-  SPEED += 25
+  slower()
 })
