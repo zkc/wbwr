@@ -17,6 +17,11 @@ const textFromMenu = electron.remote.getCurrentWindow().readerText
 let SPEED = 150
 let PAUSED = true
 
+
+const setWPM = () => {
+  $('.wpm').empty().append(Math.floor(60/(SPEED * .001)))
+}
+
 const splitter = (string) => {
   const stringRegExp = new RegExp(/[\n\s]/)
   const array = string.split(stringRegExp)
@@ -76,10 +81,13 @@ const displayUpdater = (array, index) => {
   $scrollingPast.append(past);
   $scrollingCurrent.append(array[index].word)
   $scrollingFuture.append(future);
+  $('.read-count').empty().append(currentWord + 1)
+  $('.remaining-count').empty().append(array.length - currentWord)
 }
 
 // setup viewer function stuffs
-stepper(testsring)
+stepper(textFromMenu || testsring)
+setWPM()
 
 const playPause = () => {
   PAUSED = !PAUSED
@@ -88,10 +96,12 @@ const playPause = () => {
 
 const faster = () => {
   SPEED -= 10
+  setWPM()
 }
 
 const slower = () => {
   SPEED += 10
+  setWPM()
 }
 
 const next = () => {
