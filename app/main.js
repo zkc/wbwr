@@ -4,7 +4,7 @@ const windows = new Set()
 const menubar = Menubar({
   width: 400,
   height: 500,
-  icon: ''
+  icon: './images/white-owl.png'
 })
 
 const createWindow = exports.createWindow = (text) => {
