@@ -1,8 +1,19 @@
+@font-face {
+    font-family: 'Josefin Sans', sans-serif;
+    src: url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .word-wrapper {
   text-align: center;
   margin: 20px auto;
   font-size: 2em;
 }
+
+
 
 .scrolling-text-container {
   text-align: center;
@@ -31,6 +42,7 @@
   align-self: center;
   flex: 0 ;
   margin: 0 5px;
+  font-weight: bold;
 }
 
 .scrolling-future {
