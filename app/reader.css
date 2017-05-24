@@ -4,6 +4,43 @@
   font-size: 2em;
 }
 
+.scrolling-text-container {
+  text-align: center;
+  width: 90%;
+}
+
+.scrolling-text {
+  white-space: nowrap;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-row: 20px;
+  grid-column-gap: 10px;
+}
+
+.scroll {
+  border: 1px solid black;
+  position: absolute;
+}
+
+.scrolling-past {
+  direction: rtl;
+  justify-self: end;
+  grid-column: 1;
+}
+
+.scrolling-current {
+  vertical-align: middle;
+  position: absolute;
+  color: red;
+  justify-self: center;
+  grid-column: 2/3;
+}
+
+.scrolling-future {
+  justify-self: start;
+  grid-column: 3/4;
+}
+
 /*textarea {
   margin: 5px;
   width: 100%;

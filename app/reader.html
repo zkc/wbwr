@@ -6,17 +6,24 @@
     <title></title>
   </head>
   <body>
-    <div class="scrolling-text">
-      <p class="scrolling-past"></p>
-      <div class="scrolling-current"></div>
-      <p class="scrolling-future"></p>
+    <button id="last-button"></button>
+    <div class="scrolling-text-container">
+      <div class="scrolling-text">
+        <div class="scrolling-past scroll"></div>
+        <div class="scrolling-current scroll"></div>
+        <div class="scrolling-future scroll"></div>
+      </div>
     </div>
+    <button id="next-button"></button>
     <div class="word-wrapper">
       <p class='viewer'></p>
     </div>
-    <button id="play-pause-button">Play/Pause</button>
     <button id="faster-button">faster!</button>
     <button id="slower-button">slower!</button>
+    <p class="wpm-readout"><span class"wpm">300</span>wpm</p>
+    <button id="play-pause-button">Play/Pause</button>
+    <p class="read-readout">read:<span class="read-count"></span></p>
+    <p class="remaining-readout">remaining:<span class="remaining-count"></span></p>
     <script>require('./reader.js');</script>
   </body>
 
