@@ -1,3 +1,13 @@
+/*
+#000000
+#c4d6b0
+#9a031e
+#faa916
+#2e3532
+#FFFFFF
+*/
+
+
 @font-face {
     font-family: 'Josefin Sans', sans-serif;
     src: url('https://fonts.googleapis.com/css?family=Josefin+Sans');
@@ -5,19 +15,60 @@
 
 body {
   font-family: 'Josefin Sans', sans-serif;
+  background-color: #2e3532;
 }
 
 .word-wrapper {
-  text-align: center;
-  margin: 20px auto;
-  font-size: 2em;
+  margin: 5px auto;
+  background-color: #ffffff;
+  height: 100px;
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
+.line {
+  height: 0;
+  width: 90%;
+  border: 1px solid #2e3532;
+  opacity: .7;
+  position: absolute;
+}
 
+.top-line {
+  top: 10px;
+}
+
+.bottom-line {
+  bottom: 10px
+}
+
+.viewer {
+  font-weight: bold;
+  font-size: 45px;
+  color: #2e3532;
+  margin: 13px;
+}
+
+#last-button {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+#next-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
 
 .scrolling-text-container {
   text-align: center;
-  width: 90%;
+  width: 85%;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -25,33 +76,32 @@ body {
 }
 
 .scrolling-text {
+  margin: 5px 0;
   white-space: nowrap;
   display: flex;
   flex-direction: row;
-
+  font-size: 14px;
 }
 
 .scrolling-past {
   white-space: pre;
   direction: rtl;
   width: 100px;
+  color: #c4d6b0;
+  font-weight: 100;
 }
 
 .scrolling-current {
-  color: red;
+  color: #faa916;
   align-self: center;
   flex: 0 ;
   margin: 0 5px;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .scrolling-future {
-  width: 100px
-  /*align-self: flex-start;*/
+  width: 100px;
+  color: #c4d6b0;
+  font-weight: 100;
 }
-
-/*textarea {
-  margin: 5px;
-  width: 100%;
-  height: 100%;
-}*/
