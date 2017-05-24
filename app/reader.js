@@ -35,14 +35,14 @@ const splitter = (string) => {
 //Just doing this to get the scope outside of the stepper function
 let viewer
 let currentWord
+let array
 
 const stepper = (string) => {
-  const array = splitter(string);
+  array = splitter(string);
   let end = array.length - 1
   currentWord = 0
-  spewing = true
-  $viewer.append(array[0].word)
-  $scrollingCurrent.append(array[0].word)
+
+  displayUpdater(array, currentWord)
 
   viewer = () => {
     let wordObject
@@ -51,25 +51,25 @@ const stepper = (string) => {
         currentWord++
         wordObject = array[currentWord]
 
-        if (array[currentWord - 1].punctuation) {
-          setTimeout(() => {viewer(wordObject.word)}, SPEED + 100)
+        if (array[currentWord].punctuation) {
+          setTimeout(() => {viewer(wordObject.word)}, SPEED * 2)
         } else {
           setTimeout(() => {viewer(wordObject.word)}, SPEED)
         }
       } else {
         window.close()
       }
-      $viewer.empty()
-      $viewer.append(wordObject.word)
-      scroller(array,currentWord)
+      displayUpdater(array,currentWord)
     }
   }
 }
 
-const scroller = (array, index) => {
+const displayUpdater = (array, index) => {
   const past = array.slice(0,index).map(obj => obj.word).join(" ")
   const future = array.slice(index +1, array.length - 1).map(obj => obj.word).join(" ")
 
+  $viewer.empty()
+  $viewer.append(array[index].word)
   $scrollingPast.empty();
   $scrollingCurrent.empty();
   $scrollingFuture.empty();
@@ -97,13 +97,13 @@ const slower = () => {
 const next = () => {
   PAUSED = true
   currentWord++
-  viewer()
+  displayUpdater(array, currentWord)
 }
 
 const back = () => {
   PAUSED = true
   currentWord--
-  viewer()
+  displayUpdater(array, currentWord)
 }
 
 $('html').on('keydown', (e) => {
