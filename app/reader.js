@@ -34,14 +34,15 @@ const splitter = (string) => {
 
 //Just doing this to get the scope outside of the stepper function
 let viewer
+let currentWord
+let array
 
 const stepper = (string) => {
-  const array = splitter(string);
+  array = splitter(string);
   let end = array.length - 1
-  let currentWord = 0
-  spewing = true
-  $viewer.append(array[0].word)
-  $scrollingCurrent.append(array[0].word)
+  currentWord = 0
+
+  displayUpdater(array, currentWord)
 
   viewer = () => {
     let wordObject
@@ -50,25 +51,25 @@ const stepper = (string) => {
         currentWord++
         wordObject = array[currentWord]
 
-        if (array[currentWord - 1].punctuation) {
-          setTimeout(() => {viewer(wordObject.word)}, SPEED + 100)
+        if (array[currentWord].punctuation) {
+          setTimeout(() => {viewer(wordObject.word)}, SPEED * 2)
         } else {
           setTimeout(() => {viewer(wordObject.word)}, SPEED)
         }
       } else {
         window.close()
       }
-      $viewer.empty()
-      $viewer.append(wordObject.word)
-      scroller(array,currentWord)
+      displayUpdater(array,currentWord)
     }
   }
 }
 
-const scroller = (array, index) => {
+const displayUpdater = (array, index) => {
   const past = array.slice(0,index).map(obj => obj.word).join(" ")
   const future = array.slice(index +1, array.length - 1).map(obj => obj.word).join(" ")
 
+  $viewer.empty()
+  $viewer.append(array[index].word)
   $scrollingPast.empty();
   $scrollingCurrent.empty();
   $scrollingFuture.empty();
@@ -80,15 +81,60 @@ const scroller = (array, index) => {
 // setup viewer function stuffs
 stepper(testsring)
 
-$('#pause-button').on('click', () => {
+const playPause = () => {
   PAUSED = !PAUSED
   !PAUSED && viewer()
+}
+
+const faster = () => {
+  SPEED -= 10
+}
+
+const slower = () => {
+  SPEED += 10
+}
+
+const next = () => {
+  PAUSED = true
+  currentWord++
+  displayUpdater(array, currentWord)
+}
+
+const back = () => {
+  PAUSED = true
+  currentWord--
+  displayUpdater(array, currentWord)
+}
+
+$('html').on('keydown', (e) => {
+  console.log();
+  switch(e.keyCode){
+    case 32:
+      playPause();
+      break;
+    case 40:
+      slower();
+      break;
+    case 38:
+      faster();
+      break;
+    case 37:
+      back()
+      break;
+    case 39:
+      next()
+      break;
+  }
+});
+
+$('#play-pause-button').on('click', () => {
+  playPause()
 })
 
 $('#faster-button').on('click', () => {
-  SPEED -= 25
+  faster()
 })
 
 $('#slower-button').on('click', () => {
-  SPEED += 25
+  slower()
 })
