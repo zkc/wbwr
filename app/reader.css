@@ -1,3 +1,11 @@
+
+/*#000000
+#c4d6b0
+#9a031e
+#faa916
+#2e3532
+#FFFFFF*/
+
 @font-face {
     font-family: 'Josefin Sans', sans-serif;
     src: url('https://fonts.googleapis.com/css?family=Josefin+Sans');
@@ -50,8 +58,41 @@ body {
   /*align-self: flex-start;*/
 }
 
-/*textarea {
-  margin: 5px;
-  width: 100%;
-  height: 100%;
-}*/
+#faster-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/faster.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
+#slower-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/slower.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
+
+#last-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/last.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
+
+#next-button {
+  background-color: Transparent;
+  border: none;
+  background-image: url('../images/next.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+}
