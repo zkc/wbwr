@@ -120,6 +120,7 @@ $('html').on('keydown', (e) => {
   console.log();
   switch(e.keyCode){
     case 32:
+      e.preventDefault();
       playPause();
       break;
     case 40:
