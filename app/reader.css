@@ -2,7 +2,7 @@
 #000000
 #c4d6b0
 #9a031e
-#faa916  
+#faa916
 #2e3532
 #FFFFFF
 */
@@ -16,6 +16,57 @@
 body {
   font-family: 'Josefin Sans', sans-serif;
   background-color: #2e3532;
+}
+
+.scrolling-text-container {
+  text-align: center;
+  width: 85%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.scrolling-text {
+  margin: 5px 0;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.scrolling-past {
+  white-space: pre;
+  direction: rtl;
+  width: 100px;
+  color: #c4d6b0;
+  font-weight: 100;
+}
+
+.scrolling-current {
+  color: #faa916;
+  align-self: center;
+  flex: 0 ;
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.scrolling-future {
+  width: 100px;
+  color: #c4d6b0;
+  font-weight: 100;
+}
+
+.word-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  z-index      : 1;
+  margin-top   : 13px position:absolute;
+  border-bottom: 10px solid #ffffff;
+  border-right : 10px solid transparent;
+  border-left  : 10px solid transparent;
 }
 
 .word-wrapper {
@@ -51,7 +102,63 @@ body {
   font-weight: bold;
   font-size: 45px;
   color: #2e3532;
-  margin: 13px;
+  margin: 0;
+}
+
+footer {
+  margin: 10px 0;
+  display: flex;
+}
+
+.speed-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 20px;
+  justify-content: flex-start;
+}
+
+.speed-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.wpm-readout {
+  margin-left: 10px;
+  color: #c4d6b0;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.wpm {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.progress-container {
+  position: absolute;
+  flex-direction: column;
+  display: flex;
+  right: 20px;
+  align-items: flex-end;
+}
+
+.readout {
+  margin: 0;
+  color: #c4d6b0;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.count {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#play-pause-button {
+  height: 30px;
+  width: 30px;
+  margin: 0 auto;
 }
 
 #last-button {
@@ -64,46 +171,6 @@ body {
   position: absolute;
   right: 10px;
   top: 10px;
-}
-
-.scrolling-text-container {
-  text-align: center;
-  width: 85%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-}
-
-.scrolling-text {
-  margin: 5px 0;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: row;
-  font-size: 14px;
-}
-
-.scrolling-past {
-  white-space: pre;
-  direction: rtl;
-  width: 100px;
-  color: #c4d6b0;
-  font-weight: 100;
-}
-
-.scrolling-current {
-  color: #faa916;
-  align-self: center;
-  flex: 0 ;
-  margin: 0 5px;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.scrolling-future {
-  width: 100px;
-  color: #c4d6b0;
-  font-weight: 100;
 }
 
 #faster-button {
