@@ -1,44 +1,53 @@
+@font-face {
+    font-family: 'Josefin Sans', sans-serif;
+    src: url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .word-wrapper {
   text-align: center;
   margin: 20px auto;
   font-size: 2em;
 }
 
+
+
 .scrolling-text-container {
   text-align: center;
   width: 90%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
 
 .scrolling-text {
   white-space: nowrap;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-row: 20px;
-  grid-column-gap: 10px;
-}
+  display: flex;
+  flex-direction: row;
 
-.scroll {
-  border: 1px solid black;
-  position: absolute;
 }
 
 .scrolling-past {
+  white-space: pre;
   direction: rtl;
-  justify-self: end;
-  grid-column: 1;
+  width: 100px;
 }
 
 .scrolling-current {
-  vertical-align: middle;
-  position: absolute;
   color: red;
-  justify-self: center;
-  grid-column: 2/3;
+  align-self: center;
+  flex: 0 ;
+  margin: 0 5px;
+  font-weight: bold;
 }
 
 .scrolling-future {
-  justify-self: start;
-  grid-column: 3/4;
+  width: 100px
+  /*align-self: flex-start;*/
 }
 
 /*textarea {
