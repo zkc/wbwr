@@ -4,7 +4,7 @@ const windows = new Set()
 const menubar = Menubar({ width: 400, height: 500, icon: './images/black-owl.png' })
 
 const createWindow = exports.createWindow = (text) => {
-  let newWindow = new BrowserWindow({ width: 450, height: 200 });
+  let newWindow = new BrowserWindow({ width: 450, height: 220 });
 
   windows.add(newWindow);
 
