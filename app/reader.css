@@ -1,212 +1,207 @@
-/*
-#000000
-#c4d6b0
-#9a031e
-#faa916
-#2e3532
-#FFFFFF
-*/
-
+/* #000000 #c4d6b0 #9a031e #faa916 #2e3532 #FFFFFF */
 
 @font-face {
-    font-family: 'Josefin Sans', sans-serif;
-    src: url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+  font-family : 'Josefin Sans',
+                sans-serif;
+  src         : url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 }
 
 body {
-  font-family: 'Josefin Sans', sans-serif;
-  background-color: #2e3532;
+  background-color : #2e3532;
+  font-family      : 'Josefin Sans',
+                     sans-serif;
 }
 
 .scrolling-text-container {
-  width: 85%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  margin: auto;
+  display         : flex;
+  width           : 85%;
+  margin          : auto;
+  overflow        : hidden;
+  justify-content : center;
 }
 
 .scrolling-text {
-  margin: 5px 0;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: row;
-  font-size: 14px;
+  display        : flex;
+  margin         : 5px 0;
+  font-size      : 14px;
+  flex-direction : row;
+  white-space    : nowrap;
 }
 
 .scrolling-past {
-  white-space: pre;
-  direction: rtl;
-  width: 100px;
-  color: #c4d6b0;
-  font-weight: 100;
+  width       : 100px;
+  color       : #c4d6b0;
+  font-weight : 100;
+  white-space : pre;
+  direction   : rtl;
 }
 
 .scrolling-current {
-  color: #faa916;
-  align-self: center;
-  flex: 0 ;
-  margin: 0 5px;
-  font-weight: bold;
-  font-size: 16px;
+  margin      : 0 5px;
+  color       : #faa916;
+  align-self  : center;
+  font-size   : 16px;
+  font-weight : bold;
+  flex        : 0;
 }
 
 .scrolling-future {
-  width: 100px;
-  color: #c4d6b0;
-  font-weight: 100;
+  width       : 100px;
+  color       : #c4d6b0;
+  font-weight : 100;
 }
 
 .word-wrapper::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  z-index      : 1;
-  margin-top   : 13px position:absolute;
-  border-bottom: 10px solid #ffffff;
-  border-right : 10px solid transparent;
-  border-left  : 10px solid transparent;
+  z-index       : 1;
+  content       : "";
+  position      : absolute;
+  top           : -10px;
+  margin-top    : 13px position:absolute;
+  border-right  : 10px solid transparent;
+  border-bottom : 10px solid #ffffff;
+  border-left   : 10px solid transparent;
 }
 
 .word-wrapper {
-  margin: 5px auto;
-  background-color: #ffffff;
-  height: 100px;
-  width: 90%;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  display          : flex;
+  position         : relative;
+  width            : 90%;
+  height           : 100px;
+  margin           : 5px auto;
+  border-radius    : 5px;
+  background-color : #ffffff;
+  align-items      : center;
+  flex-direction   : column;
+  justify-content  : center;
 }
 
 .line {
-  height: 0;
-  width: 90%;
-  border: 1px solid #2e3532;
-  opacity: .7;
-  position: absolute;
+  position : absolute;
+  width    : 90%;
+  height   : 0;
+  opacity  : .7;
+  border   : 1px solid #2e3532;
 }
 
 .top-line {
-  top: 10px;
+  top : 10px;
 }
 
 .bottom-line {
-  bottom: 10px
+  bottom : 10px;
 }
 
 .viewer {
-  font-weight: bold;
-  font-size: 45px;
-  color: #2e3532;
-  margin: 0;
+  margin      : 0;
+  color       : #2e3532;
+  font-size   : 45px;
+  font-weight : bold;
 }
 
 footer {
-  margin: 10px 0;
-  display: flex;
+  display : flex;
+  margin  : 10px 0;
 }
 
 .speed-wrapper {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  left: 20px;
-  justify-content: flex-start;
+  display         : flex;
+  position        : absolute;
+  left            : 20px;
+  align-items     : center;
+  justify-content : flex-start;
 }
 
 .speed-button-container {
-  display: flex;
-  flex-direction: column;
+  display        : flex;
+  flex-direction : column;
 }
 
 .wpm-readout {
-  margin-left: 10px;
-  color: #c4d6b0;
-  font-weight: 100;
-  font-size: 12px;
+  margin-left : 10px;
+  color       : #c4d6b0;
+  font-size   : 12px;
+  font-weight : 100;
 }
 
 .wpm {
-  font-size: 24px;
-  font-weight: bold;
+  font-size   : 24px;
+  font-weight : bold;
 }
 
 .progress-container {
-  position: absolute;
-  flex-direction: column;
-  display: flex;
-  right: 20px;
-  align-items: flex-end;
+  display        : flex;
+  position       : absolute;
+  right          : 20px;
+  align-items    : flex-end;
+  flex-direction : column;
 }
 
 .readout {
-  margin: 0;
-  color: #c4d6b0;
-  font-weight: 100;
-  font-size: 12px;
+  margin      : 0;
+  color       : #c4d6b0;
+  font-size   : 12px;
+  font-weight : 100;
 }
 
 .count {
-  font-weight: bold;
-  font-size: 18px;
+  font-size   : 18px;
+  font-weight : bold;
 }
 
 #play-pause-button {
-  height: 30px;
-  width: 30px;
-  margin: 0 auto;
+  width  : 30px;
+  height : 30px;
+  margin : 0 auto;
 }
 
 #last-button {
-  position: absolute;
-  left: 10px;
-  top: 10px;
+  position : absolute;
+  top      : 10px;
+  left     : 10px;
 }
 
 #next-button {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  position : absolute;
+  top      : 10px;
+  right    : 10px;
 }
 
 #faster-button {
-  background-color: Transparent;
-  border: none;
-  background-image: url('../images/faster.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 20px;
-  height: 20px;
+  width               : 20px;
+  height              : 20px;
+  border              : none;
+  background-image    : url('../images/faster.svg');
+  background-color    : Transparent;
+  background-repeat   : no-repeat;
+  background-position : center;
 }
+
 #slower-button {
-  background-color: Transparent;
-  border: none;
-  background-image: url('../images/slower.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 20px;
-  height: 20px;
+  width               : 20px;
+  height              : 20px;
+  border              : none;
+  background-image    : url('../images/slower.svg');
+  background-color    : Transparent;
+  background-repeat   : no-repeat;
+  background-position : center;
 }
 
 #last-button {
-  background-color: Transparent;
-  border: none;
-  background-image: url('../images/last.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 20px;
-  height: 20px;
+  width               : 20px;
+  height              : 20px;
+  border              : none;
+  background-image    : url('../images/last.svg');
+  background-color    : Transparent;
+  background-repeat   : no-repeat;
+  background-position : center;
 }
 
 #next-button {
-  background-color: Transparent;
-  border: none;
-  background-image: url('../images/next.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 20px;
-  height: 20px;
+  width               : 20px;
+  height              : 20px;
+  border              : none;
+  background-image    : url('../images/next.svg');
+  background-color    : Transparent;
+  background-repeat   : no-repeat;
+  background-position : center;
 }
