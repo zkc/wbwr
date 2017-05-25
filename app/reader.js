@@ -3,8 +3,13 @@ const $ = require('jquery');
 
 const testsring = `CSS Grid layout brings a two-dimensional layout tool to the web, with the ability to lay out items in rows and columns. CSS Grid can be used to achieve many different layouts. It excels at dividing a page into major regions, or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives. Like tables, grid layout enables an author to align elements into columns and rows. However, unlike tables, grid layout doesn't have content structure, therefore enabling a wide variety of layouts not possible in tables. For example, a grid container's child elements could position themselves so they actually overlap and layer, similar to CSS positioned elements.`
 
-let SPEED = 150
+let WPM = 400
+
 let PAUSED = true
+
+const msSpeed = () => {
+  return (60/WPM * 1000)
+}
 
 
 const splitter = (string) => {
@@ -33,9 +38,9 @@ const run = () => {
       const wordObject = wordObjArray[currentWordIndex]
 
       if (wordObjArray[currentWordIndex].punctuation) {
-        setTimeout(() => {run()}, SPEED * 2);
+        setTimeout(() => {run()}, msSpeed() * 2);
       } else {
-        setTimeout(() => {run()}, SPEED);
+        setTimeout(() => {run()}, msSpeed());
       }
     } else {
       window.close();
@@ -57,7 +62,7 @@ const updateDisplay = () => {
 }
 
 const setWPM = () => {
-  $('.wpm').empty().append(Math.floor(60/(SPEED * .001)));
+  $('.wpm').empty().append(WPM);
 }
 
 const playPause = () => {
@@ -67,12 +72,12 @@ const playPause = () => {
 
 const faster = () => {
   // Need to reverse the calculation to WPM instead of ms
-  SPEED -= 10
+  WPM -= 10
   setWPM();
 }
 
 const slower = () => {
-  SPEED += 10
+  WPM += 10
   setWPM();
 }
 
@@ -95,10 +100,10 @@ $('html').on('keydown', (e) => {
       playPause();
       break;
     case 40:
-      slower();
+      faster();
       break;
     case 38:
-      faster();
+      slower();
       break;
     case 37:
       back();
