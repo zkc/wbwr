@@ -4,5 +4,7 @@ const { createWindow, sendText } = remote.require('./main');
 const $ = require('jquery');
 
 $('#launch-button').on('click', () => {
-  createWindow($('.input-area').val());
+  if($('.input-area').val() != '') {
+    createWindow($('.input-area').val());
+  }
 });
