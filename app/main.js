@@ -10,13 +10,13 @@ const createWindow = exports.createWindow = (text) => {
 
   newWindow.loadURL(`file://${__dirname}/reader.html`);
 
-  newWindow.readerText = text
+  newWindow.readerText = text;
 
   newWindow.on('closed', () => {
-    windows.delete(newWindow)
-    newWindow = null
+    windows.delete(newWindow);
+    newWindow = null;
   });
-}
+};
 
 menubar.on('ready', () => {
   console.log('wbwr ready');
@@ -27,7 +27,7 @@ menubar.on('after-create-window', () => {
   menubar.window.on('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      menubar.window.webContents.send('resized', {bounds: menubar.window.getBounds()});
+      menubar.window.webContents.send('resized', { bounds: menubar.window.getBounds() });
     }, 150);
   });
 });
