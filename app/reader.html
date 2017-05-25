@@ -16,15 +16,24 @@
       <button id="next-button"></button>
     </div>
     <div class="word-wrapper">
+      <div class="line top-line"></div>
       <p class='viewer'></p>
+      <div class="line bottom-line"></div>
     </div>
-
-    <button id="faster-button"></button>
-    <button id="slower-button"></button>
-    <p class="wpm-readout"><span class="wpm"></span> wpm</p>
-    <button id="play-pause-button">Play/Pause</button>
-    <p class="read-readout">read: <span class="read-count"></span></p>
-    <p class="remaining-readout">remaining: <span class="remaining-count"></span></p>
+    <footer>
+      <div class="speed-wrapper">
+        <div class="speed-button-container">
+          <button id="faster-button"></button>
+          <button id="slower-button"></button>
+        </div>
+        <p class="wpm-readout"><span class="wpm"></span> wpm</p>
+      </div>
+      <button id="play-pause-button">Play/Pause</button>
+      <div class="progress-container">
+        <p class="read-readout readout">read: <span class="read-count count"></span></p>
+        <p class="remaining-readout readout">remaining: <span class="remaining-count count"></span></p>
+      </div>
+    </footer>
     <script>require('./reader.js');</script>
   </body>
 

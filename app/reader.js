@@ -1,123 +1,94 @@
-const electron = require('electron');
+const { remote } = require('electron');
 const $ = require('jquery');
 
-const $viewer = $('.viewer')
-const $scrollingCurrent = $('.scrolling-current')
-const $scrollingPast = $('.scrolling-past')
-const $scrollingFuture = $('.scrolling-future')
-
-const testsring = `CSS Grid layout brings a two-dimensional layout tool to the web, with the ability to lay out items in rows and columns. CSS Grid can be used to achieve many different layouts. It excels at dividing a page into major regions, or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
-
-Like tables, grid layout enables an author to align elements into columns and rows. However, unlike tables, grid layout doesn't have content structure, therefore enabling a wide variety of layouts not possible in tables. For example, a grid container's child elements could position themselves so they actually overlap and layer, similar to CSS positioned elements.
-
-`
-
-const textFromMenu = electron.remote.getCurrentWindow().readerText
+const testsring = `CSS Grid layout brings a two-dimensional layout tool to the web, with the ability to lay out items in rows and columns. CSS Grid can be used to achieve many different layouts. It excels at dividing a page into major regions, or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives. Like tables, grid layout enables an author to align elements into columns and rows. However, unlike tables, grid layout doesn't have content structure, therefore enabling a wide variety of layouts not possible in tables. For example, a grid container's child elements could position themselves so they actually overlap and layer, similar to CSS positioned elements.`
 
 let SPEED = 150
 let PAUSED = true
 
 
-const setWPM = () => {
-  $('.wpm').empty().append(Math.floor(60/(SPEED * .001)))
-}
-
 const splitter = (string) => {
   const stringRegExp = new RegExp(/[\n\s]/)
-  const array = string.split(stringRegExp)
+  const wordObjArray = string.split(stringRegExp)
 
-  return array.map( word => {
+  return wordObjArray.map( word => {
     const punctuationRegExp = new RegExp(/[.,\/#!$%\^&\*;:{}=\-_`~()]/)
     const result = { word, punctuation: false }
-
     if (word.match(punctuationRegExp)) {
+      //change to delay time.
       result.punctuation = true
     }
     return result
   })
 }
 
-//Just doing this to get the scope outside of the stepper function
-let viewer
-let currentWord
-let array
+const textFromMenu = remote.getCurrentWindow().readerText
+const wordObjArray = splitter(textFromMenu || testsring);
 
-const stepper = (string) => {
-  array = splitter(string);
-  let end = array.length - 1
-  currentWord = 0
+let currentWordIndex = 0
+const run = () => {
+  if (!PAUSED) {
+    if(currentWordIndex < wordObjArray.length - 1){
+      currentWordIndex++
+      const wordObject = wordObjArray[currentWordIndex]
 
-  displayUpdater(array, currentWord)
-
-  viewer = () => {
-    let wordObject
-    if (!PAUSED) {
-      if(currentWord<end){
-        currentWord++
-        wordObject = array[currentWord]
-
-        if (array[currentWord].punctuation) {
-          setTimeout(() => {viewer(wordObject.word)}, SPEED * 2)
-        } else {
-          setTimeout(() => {viewer(wordObject.word)}, SPEED)
-        }
+      if (wordObjArray[currentWordIndex].punctuation) {
+        setTimeout(() => {run()}, SPEED * 2);
       } else {
-        window.close()
+        setTimeout(() => {run()}, SPEED);
       }
-      displayUpdater(array,currentWord)
+    } else {
+      window.close();
     }
+    updateDisplay();
   }
 }
 
-const displayUpdater = (array, index) => {
-  const past = array.slice(0,index).map(obj => obj.word).join(" ")
-  const future = array.slice(index +1, array.length - 1).map(obj => obj.word).join(" ")
+const updateDisplay = () => {
+  const past = wordObjArray.slice(0, currentWordIndex).map(obj => obj.word).join(" ")
+  const future = wordObjArray.slice(currentWordIndex + 1, wordObjArray.length - 1).map(obj => obj.word).join(" ")
 
-  $viewer.empty()
-  $viewer.append(array[index].word)
-  $scrollingPast.empty();
-  $scrollingCurrent.empty();
-  $scrollingFuture.empty();
-  $scrollingPast.append(past);
-  $scrollingCurrent.append(array[index].word)
-  $scrollingFuture.append(future);
-  $('.read-count').empty().append(currentWord + 1)
-  $('.remaining-count').empty().append(array.length - currentWord)
+  $('.viewer').empty().append(wordObjArray[currentWordIndex].word);
+  $('.scrolling-past').empty().append(past);
+  $('.scrolling-current').empty().append(wordObjArray[currentWordIndex].word);
+  $('.scrolling-future').empty().append(future);
+  $('.read-count').empty().append(currentWordIndex + 1);
+  $('.remaining-count').empty().append(wordObjArray.length - currentWordIndex);
 }
 
-// setup viewer function stuffs
-stepper(textFromMenu || testsring)
-setWPM()
+const setWPM = () => {
+  $('.wpm').empty().append(Math.floor(60/(SPEED * .001)));
+}
 
 const playPause = () => {
   PAUSED = !PAUSED
-  !PAUSED && viewer()
+  !PAUSED && run();
 }
 
 const faster = () => {
+  // Need to reverse the calculation to WPM instead of ms
   SPEED -= 10
-  setWPM()
+  setWPM();
 }
 
 const slower = () => {
   SPEED += 10
-  setWPM()
+  setWPM();
 }
 
 const next = () => {
   PAUSED = true
-  currentWord++
-  displayUpdater(array, currentWord)
+  currentWordIndex++
+  updateDisplay();
 }
 
 const back = () => {
   PAUSED = true
-  currentWord--
-  displayUpdater(array, currentWord)
+  currentWordIndex--
+  updateDisplay();
 }
 
 $('html').on('keydown', (e) => {
-  console.log();
   switch(e.keyCode){
     case 32:
       e.preventDefault();
@@ -130,22 +101,25 @@ $('html').on('keydown', (e) => {
       faster();
       break;
     case 37:
-      back()
+      back();
       break;
     case 39:
-      next()
+      next();
       break;
   }
 });
 
 $('#play-pause-button').on('click', () => {
-  playPause()
+  playPause();
 })
 
 $('#faster-button').on('click', () => {
-  faster()
+  faster();
 })
 
 $('#slower-button').on('click', () => {
-  slower()
+  slower();
 })
+
+setWPM();
+updateDisplay();
