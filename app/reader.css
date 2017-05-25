@@ -205,3 +205,14 @@ footer {
   background-repeat   : no-repeat;
   background-position : center;
 }
+
+#play-pause-button {
+  width               : 30px;
+  height              : 30px;
+  border              : none;
+  margin-top          : 5px; 
+  background-image    : url('../images/play.svg');
+  background-color    : Transparent;
+  background-repeat   : no-repeat;
+  background-position : center;
+}
