@@ -1,0 +1,33 @@
+
+/*#000000
+#c4d6b0
+#9a031e
+#faa916
+#2e3532
+#FFFFFF*/
+
+body {
+  background-color: #2e3532;
+}
+
+.app-title {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#launch-button {
+  margin-top: 20px;
+  border: none;
+  background-color: #faa916;
+  width: 100px;
+  height: 30px;
+}
+
+.input-area {
+  text-align: left;
+}
