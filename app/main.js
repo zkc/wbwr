@@ -1,7 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const Menubar = require('menubar');
 const windows = new Set()
-const menubar = Menubar({ width: 400, height: 500, icon: './images/black-owl.png' })
+const menubar = Menubar({ width: 400, height: 500, icon: './images/white-owl.png' })
 
 const createWindow = exports.createWindow = (text) => {
   let newWindow = new BrowserWindow({ width: 400, height: 200 });
