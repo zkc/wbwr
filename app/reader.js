@@ -68,6 +68,7 @@ const setWPM = () => {
 };
 
 const playPause = () => {
+  $('.play-pause-button').toggleClass('play-pause-button-pause')
   PAUSED = !PAUSED;
   !PAUSED && run();
 };
@@ -120,7 +121,7 @@ $('html').on('keydown', (e) => {
   }
 });
 
-$('#play-pause-button').on('click', () => {
+$('.play-pause-button').on('click', () => {
   playPause();
 });
 
